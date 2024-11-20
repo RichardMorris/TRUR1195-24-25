@@ -1,8 +1,13 @@
 """A program to print ascii art of geometric shapes.
 
-It contains the following functions:
+It contains the following public functions:
 - print_square: prints a square of size size
 - print_empty_square: prints an empty square of size size
+
+To see the generated documentation, run the following command:
+    python -m pydoc .\shapes.py
+To run the program, run the following command:
+
 """
 
 def n_copies(n, symbol):
@@ -17,7 +22,7 @@ def n_copies(n, symbol):
     """
     result = ""
     for _ in range(n):
-        result += symbol
+        result += symbol   # this is the same as result = result + symbol
     return result
 
 def print_square(size):
@@ -42,7 +47,11 @@ def print_empty_square(size):
     print(n_copies(size, '*'))
     for _ in range(size - 2):
         print('*' + n_copies(size - 2, ' ') + '*')
+    print(n_copies(size, '*'))
 
-print_square(5)
-print()
-print_empty_square(5)
+# Using this guard will ensure the code is only executed when the file is run
+# as a script and not when imported as a module or when using pydoc
+if __name__ == '__main__':
+    print_square(5)
+    print()
+    print_empty_square(5)
