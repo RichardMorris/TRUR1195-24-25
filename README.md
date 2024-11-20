@@ -58,25 +58,31 @@ it works in all cases.
 For the main program the following test of the input and output are run
 
 Test 1 - drawing an empty square
-Inputs: empty_square, 5
-Output: A five by five empty square is displayed, and it asks for a new shape
+* Inputs: empty_square, 5
+* Output: A five by five empty square is displayed, and it asks for a new shape
+* Status: OK
 
 Test 2 - drawing a square
-Inputs: square, 1
-Output: A single * is displayed, and it asks for a new shape
-
+* Inputs: square, 1
+* Output: A single * is displayed, and it asks for a new shape
+* Status: OK
+  
 Test 3 - quitting the program
-Inputs: quit
-Output: The program exits
-
+* Inputs: quit
+* Output: The program exits
+* Status: OK
+  
 Test 4 - invalid name of a shape reports an error message
-Input: qwerty
-Output: A message saying invalid input, and it asks again
+* Input: qwerty
+* Output: A message saying invalid input, and it asks again
+* Status: OK prints "Unknown shape"
 
 Test 5 - invalid size reports an error message
-Input: square five
-Output: A message saying invalid input and it asks for the size again
-
-Test 6
-Input: empty_square five
-Output: A message saying invalid input and it asks for the size again
+* Input: square five
+* Output: A message saying invalid input and it asks for the size again
+* Status: fails with a crash
+  
+Test 6 - invalid size reports an error message
+* Input: empty_square five
+* Output: A message saying invalid input and it asks for the size again
+* Status: fails with a crash
