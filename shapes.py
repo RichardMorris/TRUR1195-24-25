@@ -5,7 +5,7 @@ It contains the following public functions:
 - print_empty_square: prints an empty square of size size
 
 To see the generated documentation, run the following command:
-    python -m pydoc .\shapes.py
+    python -m pydoc .\\shapes.py
 To run the program, run the following command:
 
 """
