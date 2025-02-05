@@ -10,8 +10,10 @@ def open_socket():
     # Define the port on which you want to connect
     port = 40674
 
+    # construct address as a tuple (ip address, port number)
+    address = (ip_addr, port)
     # connect to the server on 
-    sock.connect((ip_addr, port))
+    sock.connect(address)
 
 
 
