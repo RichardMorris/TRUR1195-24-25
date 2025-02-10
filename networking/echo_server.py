@@ -44,6 +44,10 @@ def wait_for_requests():
         c.close()
 
 if __name__ == '__main__':
+    if len(sys.argv < 2):
+        print("Please privide a welcome messages as the first argument")
+        sys.exit()
+    ip_addr = sys.argv[1]
     host_title = sys.argv[1]
     print(host_title)
     open_socket()
