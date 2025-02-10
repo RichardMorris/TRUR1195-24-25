@@ -18,6 +18,9 @@ def open_socket():
 
 
 if __name__ == '__main__':
+    if len(sys.argv < 2):
+        print("Please privide an IP address as the first argument")
+        sys.exit()
     ip_addr = sys.argv[1]
     print("Connecting to ",ip_addr)
     open_socket()
