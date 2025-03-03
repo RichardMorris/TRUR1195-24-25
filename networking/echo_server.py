@@ -31,17 +31,17 @@ def wait_for_requests():
     while True:
 
         # Establish connection with client.
-        c, addr = s.accept()
+        con, addr = s.accept()
         print ('Got connection from', addr )
-        c.send(host_title.encode())
+        con.send(host_title.encode())
 
-        words = c.recv(1024)
+        words = con.recv(1024)
         print('Received:',words.decode())
         # send a thank you message to the client.
-        c.send(('Hello '+words.decode()).encode())
+        con.send(('Hello '+words.decode()).encode())
 
         # Close the connection with the client
-        c.close()
+        con.close()
 
 if __name__ == '__main__':
     host_title = sys.argv[1]
