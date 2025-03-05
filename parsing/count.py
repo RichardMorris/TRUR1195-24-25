@@ -1,4 +1,6 @@
 # code to count the number of lines in a file
+# To run the code, use the following command:
+#     python count.py <file_name>
 
 import sys
 
@@ -22,6 +24,8 @@ def count_lines(file_name):
             count += 1
         return count
     
+# if the script is run directly
 if __name__ == '__main__':
-    file_name = sys.argv[1]
-    print(count_lines(file_name))
+    file_name = sys.argv[1] # get first argument from the command line
+    n =count_lines(file_name)
+    print(file_name, n)
