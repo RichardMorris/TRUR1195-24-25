@@ -4,8 +4,20 @@ import sys
 import re
 from datetime import datetime
 
-def get_referer(line: str):
-    # Match the last quoted string in the line
+def parse_request(request: str):
+    """
+    Given a string with a request like
+     "GET /pfaf/BlagdonWilderness.php HTTP/1.1"
+     return a tuple with the method, url and protocol
+    """
+    #
+    m = re.match(r'\"(\w+) ([^ ]+) ([^\"]+)\"', request)
+    # return 1st group matched
+    return (m.group(1), m.group(2), m.group(3)) if m else None
+
+
+def get_agent(line: str):
+    """Match the last quoted string in the line"""
     # Search for:
     #    A quote: \"
     #    A group inside: ( ) 
@@ -17,11 +29,12 @@ def get_referer(line: str):
     # return 1st group matched
     return res.group(1) if res else None
 
-def get_referers(file_name):
+def get_agents(file_name):
+    """Get all the user agents from the file"""
     data = []
     with open(file_name) as file:
         for line in file:
-            referer = get_referer(line)
+            referer = get_agent(line)
             if referer:
                 data.append(referer)
     return data
@@ -46,15 +59,13 @@ def n_parts(file_name):
             data.append(len(parts))
     return data
 
-
-
-def splitn(file_name,part):
-    """Split the lines returning the first field
+def split(file_name):
+    """Split the lines on space returning the first field
     Args:
     file_name (str): The name of the file to count
     part (int): The part of the line to return, 0 for the first
     Returns:
-    data: A list with the first field in the file
+    data: An array of arrays, one array per line containing the parts in the line
     """
 
     data = [] 
@@ -65,9 +76,9 @@ def splitn(file_name,part):
         # loop through each line in the file
         for line in file:
             parts = line.split(' ')
-            ip = parts[part]
-            data.append(ip)
+            data.append(parts)
     return data
+
 
 def split_struct(file_name):
     """Split the lines returning a structure
@@ -184,9 +195,20 @@ def split_statemachine(file_name):
 
 if __name__ == '__main__':
     file_name = sys.argv[1]
-    #print(splitn(file_name,int(part_no)))
-    #print(n_parts(file_name))
-    #print(get_referers(file_name))
-    #print(split_struct(file_name))
-    print(split_statemachine(file_name))
+    #res = split_statemachine(file_name)
+    print("n_parts")
+    print(n_parts(file_name)[:5] )
+    print()       
+    res = split(file_name)
+    print("split")
+    print(res[:2])
+    print()        
+    print("agents")
+    print(get_agents(file_name)[:2]) 
+    print()        
+    print("struct")
+    print(split_struct(file_name)[:2])
+    print()        
+    print("statemachine")
+    print(split_statemachine(file_name)[:2])
     
